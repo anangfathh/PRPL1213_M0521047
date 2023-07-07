@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>5-star Rating System</title>
+    <style>
+      .rating {
+        font-size: 0;
+      }
+
+      .star {
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        background-image: url("assets/image/star-empty.png");
+        background-size: contain;
+        cursor: pointer;
+      }
+
+      .star.selected,
+      .star:hover {
+        background-image: url("assets/image/star-filled.png");
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rating">
+      <span class="star" data-value="1"></span>
+      <span class="star" data-value="2"></span>
+      <span class="star" data-value="3"></span>
+      <span class="star" data-value="4"></span>
+      <span class="star" data-value="5"></span>
+    </div>
+
+    <script>
+      const stars = document.querySelectorAll(".star");
+
+      function rate(value) {
+        for (let i = 0; i < stars.length; i++) {
+          if (i < value) {
+            stars[i].classList.add("selected");
+          } else {
+            stars[i].classList.remove("selected");
+          }
+        }
+      }
+
+      stars.forEach(function (star) {
+        star.addEventListener("click", function () {
+          const value = parseInt(star.getAttribute("data-value"));
+          rate(value);
+        });
+      });
+    </script>
+  </body>
+</html>
